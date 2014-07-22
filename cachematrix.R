@@ -3,6 +3,7 @@
 ## USAGE: makeCacheMatrix(x), cacheSolve(x1,...).
 ## x - matrix to store and have its inverse computed and stored
 ## x1 - object returned by makeCacheMatrix()
+## Do not forget to run: source('cachematrix.R') before testing.
 
 
 ## makeCacheMatrix() returns a list of four functions: 
@@ -23,13 +24,13 @@ makeCacheMatrix <- function(x = matrix()) {
         list(set=set,get=get,set_mat_inv=set_mat_inv,get_mat_inv=get_mat_inv)
 }
 
-## cacheSolve() takes object x of a class list created with a function .
+## cacheSolve() takes object x of a class list created with a function 
 ## makeCacheMatrix(). It returns inverse of a matrix passed to makeCacheMatrix().
 ## The cached inverse is returned if it exists. Otherwise, inverse is computed and 
 ## cached with makeCacheMatrix() for future reference. 
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        ## Return a matrix that is an inverse of 'x' created with makeCacheMatrix()
         m_inv <-x$get_mat_inv()
         if(!is.null(m_inv)){
             message('returning cached inverse matrix')
@@ -44,6 +45,7 @@ cacheSolve <- function(x, ...) {
 }
 
 
+## use: mat<-matrix(c(-1,1,2,4),nrow=2,ncol=2) for tests
 ## RESOURCES:
 ## More on matrix operations in R:
 ## http://www.statmethods.net/advstats/matrix.html
